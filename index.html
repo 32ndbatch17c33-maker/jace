@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>JACE Streaming</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0052ff">
+    
+    <script src="https://www.youtube.com/iframe_api"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>JACE Streaming</title>
@@ -1282,5 +1287,23 @@
             document.body.classList.remove('playing-mode');
         });
     </script>
+    // ... existing button event listeners ...
+        document.getElementById('btn-close-player').addEventListener('click', () => {
+            document.getElementById('video-wrapper').innerHTML = '';
+            document.body.classList.remove('playing-mode');
+        });
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('JACE Service Worker registered:', reg.scope))
+                    .catch(err => console.error('JACE Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
 </body>
 </html>
